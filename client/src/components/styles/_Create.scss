@@ -1,0 +1,40 @@
+.create-container {
+    width: 35%;
+    @include align-middle;
+
+    .create-container__title {
+        color: $black-color;
+        font-size: 20px;
+        text-align: center;
+    }
+    
+    .create-container__form {
+        margin-top: 35px;
+
+        .create-container__form-group {
+            margin-bottom: 25px;
+
+            .create-container__label {
+                display: block;
+            }
+
+            .create-container__input {
+                width: 100%;
+                border: transparent;
+                background: #fff;
+                @include box-shadow-input;
+            }
+
+            .create-container__submit {
+                display: block;
+                margin: 0 auto;
+                border: transparent;
+                @include box-shadow-input;
+                color: $white-color;
+                background-color: #417c94;
+                padding: 5px 15px;
+            }
+        }
+
+    }
+}

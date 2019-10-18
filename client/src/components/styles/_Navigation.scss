@@ -1,0 +1,37 @@
+.header {
+    background: $black-color;
+    padding: 20px;
+
+    .header__home {
+        @include decoration-none;
+        color: $white-color;
+        font-size: 20px;
+
+            &:active,
+            &:visited,
+            &:focus {
+                @include decoration-none;
+
+            }
+    }
+
+    .header__menu {
+        display: inline-flex;
+        position: absolute;
+        right: 20px;
+
+        .header__menu__link {
+            @include decoration-none;
+            color: $white-color;
+            margin-right: 20px;
+
+            &:last-of-type {
+                margin-right: 0px;
+            }
+        }
+
+        .header__menu__link.active {
+            color: #999ca8;
+        }
+    }
+}

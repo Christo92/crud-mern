@@ -1,0 +1,14 @@
+body {
+    font-family: "Futura_Book";
+    background: #f1f3f5;
+    min-height: 100vh;
+}
+
+.app-mern {
+    .app-mern__welcome {
+        color: $black-color;
+        font-size: 20px;
+        @include align-middle;
+    }
+
+}
