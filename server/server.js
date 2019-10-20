@@ -2,7 +2,6 @@ const express = require('express');
 const cors = require('cors');
 const connectDB = require('./config/db');
 
-
 // Init express
 const app = express();
 
@@ -17,7 +16,7 @@ app.use(express.json({ extented: false }));
 app.use('/api/person', require('./routes/api/person'));
 
 // Setting PORT
-const PORT = process.env.PORT || 6000;
+const PORT = process.env.PORT || 7770;
 app.listen(PORT, () => {
     console.log(`Server in running on Port: ${PORT}`);
 })
