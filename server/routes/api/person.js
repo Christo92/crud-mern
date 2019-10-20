@@ -8,7 +8,6 @@ let Person = require('../../models/Person');
 
 // Get data 
 personRoutes.get('/list', async (req, res, next) => {
-    console.log('hello')
     try {
         const person = await Person.find({});
 
@@ -16,8 +15,9 @@ personRoutes.get('/list', async (req, res, next) => {
             return res.status(400).json({ msg: 'There is no persons in database'});
         }
 
-        res.json(person, 'Get all data done');
-        next();
+        res.status('Get all data done').json(person);
+        // next();
+
     } catch (err) {
         console.error(err.message);
         res.status(500).send('Server Error (get All)')
@@ -28,13 +28,13 @@ personRoutes.get('/list', async (req, res, next) => {
 personRoutes.post('/add', async (req, res, next) => {
     try {
         const person = await Person.create(req.body);
-
+        
         if (!person) {
             return res.status(400).json({ msg: 'There is no person to add'});
         }
 
-        res.json(perosn, 'Adding done');
-        next();
+        res.status(200).json({'person': 'Adding done'});
+        // next();
 
     } catch (err) {
         console.error(err.message);
@@ -52,8 +52,8 @@ personRoutes.get('/edit/:id', async (req, res, next) => {
             return res.status(400).json({ msg: 'Not possible to edit'});
         }
 
-        res.json(person, 'Edit done');
-        next();
+        res.status('Edit done').json(person);
+        // next();
     } catch (err) {
         console.error(err.message);
         res.status(500).send('Server Error (edit)')
@@ -81,12 +81,14 @@ personRoutes.post('/update/:id', async (req, res, next) => {
                 return res.status(400).json({ msg: 'Error with the updating'});
             }
 
-            res.json(person, 'Update Complete');
-            next();
+            res.status('Update Complete').json(person);
+            // next();
             
         } catch (err) {
             console.error(err.message);
             res.status(500).send('Server Error (update)')
+            // Exit process with failure
+            // process.exit(1);
         }     
     } catch (err) {
         console.error(err.message);
@@ -103,8 +105,9 @@ personRoutes.delete('/delete/:id', async (req, res, next) => {
             return res.status(400).json({ msg: 'There is no more persons in database'});
         }
 
-        res.json(person, 'Deleting done');
-        next();
+        res.status('Deleting done').json(person);
+        // next();
+
     } catch (err) {
         console.error(err.message);
         res.status(500).send('Server Error (delete All)')
@@ -120,8 +123,9 @@ personRoutes.delete('/deleteAll/:id', async (req, res, next) => {
             return res.status(400).json({ msg: 'There is no more persons in database' });
         }
 
-        res.json(person, 'Deleting of all persons done');
-        next();
+        res.status('Deleting of all persons done').json(person);
+        // next();
+
     } catch (err) {
         console.error(err.message);
         res.status(500).send('Server Error (delete All)')

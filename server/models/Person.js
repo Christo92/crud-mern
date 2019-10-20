@@ -3,17 +3,14 @@ const Schema = mongoose.Schema;
 
 // Let create the schema of Person
 const PersonSchema = new Schema({
-    name: {
+    personName: {
         type: String,
-        required: true
     },
-    nickname: {
+    personNickName: {
         type: String,
-        required: true,
     },
-    description: {
+    personDescription: {
         type: String,
-        required: true
     }
 })
 

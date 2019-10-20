@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 /*
 Here is the create form :
@@ -18,7 +19,7 @@ class Create extends Component {
     // To get the name
     handlePersonName = (e) => {
         this.setState({
-            personName: e.targer.value
+            personName: e.target.value
         });
     };
 
@@ -36,10 +37,25 @@ class Create extends Component {
         });
     };
 
-    onSubmit = (e) => {
+    // Submit the person
+    onSubmit = async (e) => {
         e.preventDefault();
-        console.log(`Value ${this.state.personName}, 
-        ${this.state.personNickName}, ${this.state.personDescription}`);
+
+        const obj = {
+            personName: this.state.personName,
+            personNickName: this.state.personNickName,
+            personDescription: this.state.personDescription
+        };
+
+        // Call add api
+        try {
+            const addperson = await axios.post('/api/person/add', obj);
+            console.log(addperson.data);
+        } catch (err) {
+            console.error(err.message);
+        }
+
+        // Empty back the fields
         this.setState({
             personName: '',
             personNickName: '',
