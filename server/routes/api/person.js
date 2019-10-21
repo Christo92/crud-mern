@@ -36,8 +36,8 @@ personRoutes.post('/add', async (req, res, next) => {
         res.status(200).json({'person': 'Adding done'});
 
     } catch (err) {
-        console.error(err.message);
         res.status(500).send('Server Error (post)')
+        console.error(err.message);
     }
 });
 
@@ -93,9 +93,9 @@ personRoutes.post('/update/:id', async (req, res, next) => {
 });
 
 // Delete one person
-personRoutes.delete('/delete/:id', async (req, res, next) => {
+personRoutes.get('/delete/:id', async (req, res, next) => {
     try {
-        const person = await Person.findByIdAndDelete({"_id:": req.params.id});
+        const person = await Person.findOneAndDelete({"_id": req.params.id})
 
         if (!person) {
             return res.status(400).json({ msg: 'There is no more persons in database'});
