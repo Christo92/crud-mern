@@ -15,8 +15,8 @@ personRoutes.get('/list', async (req, res, next) => {
             return res.status(400).json({ msg: 'There is no persons in database'});
         }
 
-        res.status('Get all data done').json(person);
-        // next();
+        // Get the result
+        res.status(200).json(person);
 
     } catch (err) {
         console.error(err.message);
@@ -34,7 +34,6 @@ personRoutes.post('/add', async (req, res, next) => {
         }
 
         res.status(200).json({'person': 'Adding done'});
-        // next();
 
     } catch (err) {
         console.error(err.message);
@@ -52,8 +51,8 @@ personRoutes.get('/edit/:id', async (req, res, next) => {
             return res.status(400).json({ msg: 'Not possible to edit'});
         }
 
+        // Get the result
         res.status('Edit done').json(person);
-        // next();
     } catch (err) {
         console.error(err.message);
         res.status(500).send('Server Error (edit)')
@@ -82,13 +81,10 @@ personRoutes.post('/update/:id', async (req, res, next) => {
             }
 
             res.status('Update Complete').json(person);
-            // next();
             
         } catch (err) {
             console.error(err.message);
             res.status(500).send('Server Error (update)')
-            // Exit process with failure
-            // process.exit(1);
         }     
     } catch (err) {
         console.error(err.message);
@@ -106,7 +102,6 @@ personRoutes.delete('/delete/:id', async (req, res, next) => {
         }
 
         res.status('Deleting done').json(person);
-        // next();
 
     } catch (err) {
         console.error(err.message);
@@ -124,7 +119,6 @@ personRoutes.delete('/deleteAll/:id', async (req, res, next) => {
         }
 
         res.status('Deleting of all persons done').json(person);
-        // next();
 
     } catch (err) {
         console.error(err.message);

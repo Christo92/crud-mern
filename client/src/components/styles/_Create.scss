@@ -1,6 +1,7 @@
 .create-container {
     width: 35%;
-    @include align-middle;
+    position: relative;
+    margin: 80px auto 0;
 
     .create-container__title {
         color: $black-color;

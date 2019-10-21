@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+// Component
+import PersonList from './PersonList';
 
 /*
 Here is the create form :
@@ -104,6 +106,8 @@ class Create extends Component {
                         <input type="submit" value="Submit" className="create-container__submit"/>
                     </div>
                 </form>
+
+                <PersonList />
             </div>
         )
     }

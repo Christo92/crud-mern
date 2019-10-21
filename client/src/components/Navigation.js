@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Switch, Route, Link, NavLink } from 'react-rou
 import Home from './Home';
 import Create from './Create';
 import Edit from './Edit';
-import List from './List';
+import PersonList from './PersonList';
 
 class Navigation extends Component {
     render() {
@@ -21,7 +21,7 @@ class Navigation extends Component {
                         <Route exact path="/" component={Home} />   
                         <Route path="/create" component={Create} />
                         <Route path="/edit/:id" component={Edit} />
-                        <Route path="/list" component={List} />
+                        <Route path="/list" component={PersonList} />
                     </Switch>
             </Router>
         )
