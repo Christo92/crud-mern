@@ -18,8 +18,6 @@ class PersonList extends Component {
             this.setState({
                 persons: personData
             });
-
-            console.log(this.state.persons)
             
         } catch (error) {
             console.error(error.message)

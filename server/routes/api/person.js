@@ -52,7 +52,8 @@ personRoutes.get('/edit/:id', async (req, res, next) => {
         }
 
         // Get the result
-        res.status('Edit done').json(person);
+        res.status(200).json(person);
+
     } catch (err) {
         console.error(err.message);
         res.status(500).send('Server Error (edit)')
@@ -69,10 +70,9 @@ personRoutes.post('/update/:id', async (req, res, next) => {
         }
 
         try {
-            console.log(person)
-            person.name = req.body.person_name;
-            person.nickname = req.body.nickname;
-            person.description = req.body.description;
+            person.personName = req.body.personName;
+            person.personNickName = req.body.personNickName;
+            person.personDescription = req.body.personDescription;
     
             const personUpdated = await person.save();
 
@@ -80,7 +80,7 @@ personRoutes.post('/update/:id', async (req, res, next) => {
                 return res.status(400).json({ msg: 'Error with the updating'});
             }
 
-            res.status('Update Complete').json(person);
+            res.status(200).json('Update Done');
             
         } catch (err) {
             console.error(err.message);
@@ -101,7 +101,7 @@ personRoutes.delete('/delete/:id', async (req, res, next) => {
             return res.status(400).json({ msg: 'There is no more persons in database'});
         }
 
-        res.status('Deleting done').json(person);
+        res.status(200).json('Deleting done');
 
     } catch (err) {
         console.error(err.message);
@@ -118,7 +118,7 @@ personRoutes.delete('/deleteAll/:id', async (req, res, next) => {
             return res.status(400).json({ msg: 'There is no more persons in database' });
         }
 
-        res.status('Deleting of all persons done').json(person);
+        res.status(200).json('Deleting of all persons done');
 
     } catch (err) {
         console.error(err.message);

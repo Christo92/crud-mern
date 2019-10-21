@@ -63,6 +63,9 @@ class Create extends Component {
             personNickName: '',
             personDescription: ''
         })
+
+        // Push to list page
+        this.props.history.push('/list')
     };
 
     render() {

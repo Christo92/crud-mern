@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Person = (props) => {
     return (
@@ -6,7 +7,7 @@ const Person = (props) => {
             <p>Name: <span>{props.person.personName}</span></p>
             <p>Nickname: <span>{props.person.personNickName}</span></p>
             <p>Description: <span>{props.person.personDescription}</span></p>
-            <button>Edit</button>
+            <Link to={`/edit/${props.person._id}`}>Edit</Link>
             <button>Delete</button>
         </div>
     )
