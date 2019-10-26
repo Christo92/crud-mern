@@ -33,7 +33,7 @@ personRoutes.post('/add', async (req, res, next) => {
             return res.status(400).json({ msg: 'There is no person to add'});
         }
 
-        res.status(200).json({'person': 'Adding done'});
+        res.status(200).json(person);
 
     } catch (err) {
         res.status(500).send('Server Error (post)')
@@ -110,7 +110,7 @@ personRoutes.get('/delete/:id', async (req, res, next) => {
 });
 
 // Delete all persons
-personRoutes.delete('/deleteAll/:id', async (req, res, next) => {
+personRoutes.get('/deleteAll', async (req, res, next) => {
     try {
         const person = await Person.deleteMany({});
 
@@ -118,7 +118,7 @@ personRoutes.delete('/deleteAll/:id', async (req, res, next) => {
             return res.status(400).json({ msg: 'There is no more persons in database' });
         }
 
-        res.status(200).json('Deleting of all persons done');
+        res.status(200).json('Deleting of all persons');
 
     } catch (err) {
         console.error(err.message);

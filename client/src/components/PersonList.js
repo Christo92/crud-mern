@@ -3,6 +3,7 @@ import axios from 'axios';
 import uuid from 'uuid/v4';
 // Component
 import Person from './Person';
+import Create from './Create';
 
 class PersonList extends Component {
 
@@ -24,6 +25,7 @@ class PersonList extends Component {
         }
     };
 
+    // Iterate in persons array to show each
     displayPersons = () => {
         if (this.state.persons.length > 0) {
             return this.state.persons.map(person => (
@@ -34,9 +36,31 @@ class PersonList extends Component {
         }
     }
 
+    displayButtonDelete = () => {
+        if (this.state.persons.length > 0) {
+            return <button onClick={this.deleteAllPersons}>Delete All</button>
+        }
+    }
+
+    // Delete All persons on list
+    deleteAllPersons = async () => {
+        try {
+            await axios.get('/api/person/deleteAll');
+            
+            this.setState({
+                persons: []
+            })
+            
+        } catch (err) {
+            console.log(err.message)
+        }
+    }
+
     render() {
         return (
             <div>
+            <Create refreshState={this.refreshState}/>
+                {this.displayButtonDelete()}
                 {this.displayPersons()}
             </div>
         )

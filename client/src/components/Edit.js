@@ -26,7 +26,6 @@ class Edit extends Component {
     }
 
     handlePersonName = (e) => {
-        console.log(e.target.value, 'personName')
         this.setState({
             personName: e.target.value
         })
@@ -60,7 +59,7 @@ class Edit extends Component {
         }
 
         // After update go back to the list
-        this.props.history.push('/list')
+        this.props.history.push('/create')
     }
 
     render() {
