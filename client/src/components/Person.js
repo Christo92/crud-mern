@@ -16,12 +16,15 @@ class Person extends Component {
 
     render() {
         return (
-            <div>
-                <p>Name: <span>{this.props.person.personName}</span></p>
-                <p>Nickname: <span>{this.props.person.personNickName}</span></p>
-                <p>Description: <span>{this.props.person.personDescription}</span></p>
-                <Link to={`/edit/${this.props.person._id}`}>Edit</Link>
-                <button onClick={this.handleDelete}>Delete</button>
+            <div className="personlist-container__block-person">
+                <p className="personlist-container__block-person-firstname">Firsname: <span>{this.props.person.personName}</span></p>
+                <p className="personlist-container__block-person-nickname">Nickname: <span>{this.props.person.personNickName}</span></p>
+                <p className="personlist-container__block-person-description">Description: <span>{this.props.person.personDescription}</span></p>
+                <div className="personlist-container_buttons">
+                    <Link to={`/edit/${this.props.person._id}`} className="personlist-container__block-person-editbutton">Edit</Link>
+                    <button onClick={this.handleDelete} className="personlist-container__block-person-deletebutton">Delete</button>
+                
+                </div>
             </div>
         )
     }

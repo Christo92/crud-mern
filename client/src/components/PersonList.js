@@ -32,13 +32,13 @@ class PersonList extends Component {
                 <Person key={uuid()} person={person}/>
             ))
         } else {
-            return <div>The list is empty</div>
+            return <div className="personlist-container__title">The list is empty</div>
         }
     }
 
     displayButtonDelete = () => {
         if (this.state.persons.length > 0) {
-            return <button onClick={this.deleteAllPersons}>Delete All</button>
+            return <button className="personlist-container__block-deleteAll" onClick={this.deleteAllPersons}>Delete All</button>
         }
     }
 
@@ -58,10 +58,12 @@ class PersonList extends Component {
 
     render() {
         return (
-            <div>
+            <div className="personlist-container">
             <Create refreshState={this.refreshState}/>
-                {this.displayButtonDelete()}
-                {this.displayPersons()}
+            {this.displayButtonDelete()}
+                <div className="personlist-container__block">
+                    {this.displayPersons()}
+                </div>
             </div>
         )
     }

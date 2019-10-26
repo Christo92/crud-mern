@@ -49,8 +49,7 @@ class Create extends Component {
 
         // Call add api
         try {
-            const addperson = await axios.post('/api/person/add', obj);
-            console.log(addperson.data);
+            await axios.post('/api/person/add', obj);
         } catch (err) {
             console.error(err.message);
         }
@@ -63,7 +62,7 @@ class Create extends Component {
         })
 
         // Push to list page
-        this.props.history.push('/list')
+        window.location.reload(); 
     };
 
     render() {
