@@ -64,38 +64,42 @@ class Edit extends Component {
 
     render() {
         return (
-            <div>
-                <h3>Update person</h3>
-                <form onSubmit={this.handleSubmit}>
+            <div className="edit-container">
+                <h3 className="edit-container__title">Update person</h3>
+                <form className="edit-container__form" onSubmit={this.handleSubmit}>
 
-                    <div>
-                        <label>Person Name:</label>
+                    <div className="edit-container__form-group">
+                        <label className="edit-container__label">Person Name:</label>
                         <input 
                             type="text"
+                            className="edit-container__input"
                             value={this.state.personName}
                             onChange={this.handlePersonName}
                         />
                     </div>
 
-                    <div>
-                        <label>Person Nickname:</label>
+                    <div className="edit-container__form-group">
+                        <label className="edit-container__label">Person Nickname:</label>
                         <input 
                             type="text"
+                            className="edit-container__input"
                             value={this.state.personNickName}
                             onChange={this.handlePersonNickname}
                         />
                     </div>
 
-                    <div>
-                        <label>Person Description:</label>
+                    <div className="edit-container__form-group">
+                        <label className="edit-container__label">Person Description:</label>
                         <input 
                             type="text"
+                            className="edit-container__input"
                             value={this.state.personDescription}
                             onChange={this.handlePersonDescription}
                         />
                     </div>
-                    <div>
+                    <div className="edit-container__form-group">
                         <input 
+                            className="edit-container__submit"
                             type="submit"
                             value="Update person"
                         />

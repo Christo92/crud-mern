@@ -1,0 +1,41 @@
+.edit-container {
+    width: 35%;
+    position: relative;
+    margin: 80px auto 0;
+
+    .edit-container__title {
+        color: $black-color;
+        font-size: 20px;
+        text-align: center;
+    }
+    
+    .edit-container__form {
+        margin-top: 35px;
+
+        .edit-container__form-group {
+            margin-bottom: 25px;
+
+            .edit-container__label {
+                display: block;
+            }
+
+            .edit-container__input {
+                width: 100%;
+                border: transparent;
+                background: #fff;
+                @include box-shadow-input;
+            }
+
+            .edit-container__submit {
+                display: block;
+                margin: 0 auto;
+                border: transparent;
+                @include box-shadow-input;
+                color: $white-color;
+                background-color: #009900;
+                padding: 5px 15px;
+            }
+        }
+
+    }
+}
