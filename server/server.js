@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const connectDB = require('./config/db');
+const path = require('path');
 
 // Init express
 const app = express();
@@ -14,6 +15,13 @@ app.use(express.json({ extented: false }));
 
 // Define Routes
 app.use('/api/person', require('./routes/api/person'));
+
+// Heroku config
+app.use(express.static('../client/build'));
+
+app.get("*", (req, res) => {
+    res.sendFile('../client/build/index.html');
+});
 
 // Setting PORT
 const PORT = process.env.PORT || 6400;
