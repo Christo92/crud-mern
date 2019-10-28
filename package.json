@@ -1,0 +1,25 @@
+{
+  "name": "crud-mern",
+  "version": "1.0.0",
+  "description": "This project is about to better understand MERN Stack (Mongo, Express, ReactJS, NodeJS) and how a web application can be build.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "cd server && npm install && npm run dev",
+    "heroku-postbuild": "cd client && npm install && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Christo92/crud-mern.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Christo92/crud-mern/issues"
+  },
+  "homepage": "https://github.com/Christo92/crud-mern#readme",
+  "engines": {
+    "node": "12.12.0"
+  }
+}

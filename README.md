@@ -15,3 +15,4 @@ Back :
 - dotenv
 - express
 - mongoose
+- nodemon
