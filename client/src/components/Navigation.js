@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Switch, Route, Link, NavLink } from 'react-router-dom';
+import { Switch, Route, Link, NavLink } from 'react-router-dom';
 // Components
 import Home from './Home';
 import Edit from './Edit';
@@ -8,7 +8,7 @@ import PersonList from './PersonList';
 class Navigation extends Component {
     render() {
         return (
-            <Router>
+            <div>
                 <header className="header">
                     <Link to={'/'} className="header__home">CRUD-MERN</Link>
                     <div className="header__menu">
@@ -20,7 +20,7 @@ class Navigation extends Component {
                         <Route path="/create" component={PersonList} />
                         <Route path="/edit/:id" component={Edit} />
                     </Switch>
-            </Router>
+            </div>
         )
     }
 }

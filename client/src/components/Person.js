@@ -11,6 +11,8 @@ class Person extends Component {
             console.log(err.message)
         }
 
+        this.props.rerender();
+
         window.location.reload(); 
     }
 
