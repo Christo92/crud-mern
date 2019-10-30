@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import PropTypes from 'prop-types';
 
 class Person extends Component {
 
     handleDelete = async () => {
         try {
+            console.log(this.props.person);
             await axios.get(`/api/person/delete/${this.props.person._id}`)  
         } catch (err) {
             console.log(err.message)
@@ -28,6 +30,15 @@ class Person extends Component {
             </div>
         )
     }
+}
+
+Person.propTypes = {
+    person: PropTypes.shape({
+        _id: PropTypes.string,
+        personName: PropTypes.string,
+        personNickName: PropTypes.string,
+        personDescription: PropTypes.string,
+    }).isRequired
 }
 
 export default Person;

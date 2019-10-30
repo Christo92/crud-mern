@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import PropTypes from 'prop-types';
 
 class Edit extends Component {
 
@@ -108,6 +109,15 @@ class Edit extends Component {
             </div>
         )
     }
+}
+
+Edit.propTypes = {
+    match: PropTypes.shape({
+        params: PropTypes.shape({
+            id: PropTypes.string
+        })
+    }).isRequired,
+    history: PropTypes.object
 }
 
 export default Edit;
