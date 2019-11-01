@@ -1,72 +1,71 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import uuid from 'uuid/v4';
 // Component
 import Person from './Person';
 import Create from './Create';
 
-class PersonList extends Component {
+function PersonList(props) {
 
-    state = {
-        persons: []
-    }
+    // Set State hooks
+    const [persons, setPersonsList] = useState([]);
 
-    async componentDidMount() {
-        try {
-            const personList = await axios.get('/api/person/list');
-            let personData = personList.data;
+    // Http request to get persons data
+    useEffect(() => {
+        async function fetchData() {
+            try {
+                const personList = await axios.get('/api/person/list');
+                let personData = personList.data;
 
-            this.setState({
-                persons: personData
-            });
-            
-        } catch (error) {
-            console.error(error.message)
+                setPersonsList(personData)
+
+            } catch (error) {
+                console.error(error.message)
+            }
         }
-    };
+        fetchData()
+    }, []);
 
     // Iterate in persons array to show each
-    displayPersons = () => {
-        if (this.state.persons.length > 0) {
-            return this.state.persons.map(person => (
-                <Person key={uuid()} person={person}/>
+    function displayPersons() {
+        if (persons.length > 0) {
+            return persons.map(person => (
+                <Person key={uuid()} person={person} />
             ))
         } else {
             return <div className="personlist-container__title">The list is empty</div>
         }
     }
 
-    displayButtonDelete = () => {
-        if (this.state.persons.length > 0) {
-            return <button className="personlist-container__block-deleteAll" onClick={this.deleteAllPersons}>Delete All</button>
+    // Delete All button
+    function displayButtonDeleteAll() {
+        if (persons.length > 0) {
+            return <button className="personlist-container__block-deleteAll" onClick={deleteAllPersons}>Delete All</button>
         }
     }
 
     // Delete All persons on list
-    deleteAllPersons = async () => {
+    async function deleteAllPersons() {
         try {
             await axios.get('/api/person/deleteAll');
-            
-            this.setState({
-                persons: []
-            })
-            
+
+            // Empty the array
+            setPersonsList([])
+
         } catch (err) {
             console.log(err.message)
         }
     }
 
-    render() {
-        return (
-            <div className="personlist-container">
-            <Create refreshState={this.refreshState}/>
-            {this.displayButtonDelete()}
-                <div className="personlist-container__block">
-                    {this.displayPersons()}
-                </div>
+    return (
+        <div className="personlist-container">
+            <Create />
+            {displayButtonDeleteAll()}
+            <div className="personlist-container__block">
+                {displayPersons()}
             </div>
-        )
-    }
+        </div>
+    )
 }
 
 export default PersonList;
