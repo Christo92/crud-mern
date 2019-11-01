@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 
 /*
@@ -8,6 +8,111 @@ Here is the create form :
 - description input
 - submit inpuy
 */
+function Create() {
+
+    const [personName, setPersonName] = useState('');
+    const [personNickName, setPersonNickName] = useState('');
+    const [personDescription, setPersonDescription] = useState('');
+
+    // To get the name
+    function handlePersonName(e) {
+        setPersonName(e.target.value);
+    }
+
+    // To get the nickname
+    function handlePersonNickName(e) {
+        setPersonNickName(e.target.value)
+    };
+
+    // To get the description
+    function handlePersonDescription(e) {
+        setPersonDescription(e.target.value);
+    }
+
+    // Submit the person
+    async function handleSubmit(e) {
+        e.preventDefault();
+
+        const obj = {
+            personName,
+            personNickName,
+            personDescription
+        };
+
+        // Call add api
+        try {
+            await axios.post('/api/person/add', obj);
+        } catch (err) {
+            console.error(err.message);
+        }
+
+        // Empty back the fields
+        setPersonName('');
+        setPersonNickName('');
+        setPersonDescription('');
+
+         // Refresh the page
+         window.location.reload();
+    }
+
+    return (
+        <div className="create-container">
+            <h3 className="create-container__title">Add new item</h3>
+
+            <form className="create-container__form" onSubmit={handleSubmit}>
+
+                <div className="create-container__form-group">
+                    <label className="create-container__label">Add a name</label>
+                    <input
+                        type="text"
+                        className="create-container__input"
+                        value={personName}
+                        onChange={handlePersonName}
+                    />
+                </div>
+
+                <div className="create-container__form-group">
+                    <label className="create-container__label">Add a nickname</label>
+                    <input
+                        type="text"
+                        className="create-container__input"
+                        value={personNickName}
+                        onChange={handlePersonNickName}
+                    />
+                </div>
+
+                <div className="create-container__form-group">
+                    <label className="create-container__label">Add a description</label>
+                    <input
+                        type="text"
+                        className="create-container__input"
+                        value={personDescription}
+                        onChange={handlePersonDescription}
+                    />
+                </div>
+
+                <div className="create-container__form-group">
+                    <input type="submit" value="Submit" className="create-container__submit" />
+                </div>
+            </form>
+        </div>
+    )
+}
+
+export default Create;
+
+
+/*
+import React, { Component } from 'react';
+import axios from 'axios';
+
+
+Here is the create form :
+- name input
+- nickname input
+- description input
+- submit inpuy
+
 class Create extends Component {
 
     state = {
@@ -62,7 +167,7 @@ class Create extends Component {
         })
 
         // Push to list page
-        window.location.reload(); 
+        window.location.reload();
     };
 
     render() {
@@ -74,8 +179,8 @@ class Create extends Component {
 
                     <div className="create-container__form-group">
                         <label className="create-container__label">Add a name</label>
-                        <input 
-                            type="text" 
+                        <input
+                            type="text"
                             className="create-container__input"
                             value={this.state.personName}
                             onChange={this.handlePersonName}
@@ -84,8 +189,8 @@ class Create extends Component {
 
                     <div className="create-container__form-group">
                         <label className="create-container__label">Add a nickname</label>
-                        <input 
-                            type="text" 
+                        <input
+                            type="text"
                             className="create-container__input"
                             value={this.state.personNickName}
                             onChange={this.handlePersonNickName}
@@ -94,14 +199,14 @@ class Create extends Component {
 
                     <div className="create-container__form-group">
                         <label className="create-container__label">Add a description</label>
-                        <input 
-                            type="text" 
+                        <input
+                            type="text"
                             className="create-container__input"
                             value={this.state.personDescription}
                             onChange={this.handlePersonDescription}
                         />
                     </div>
-                    
+
                     <div className="create-container__form-group">
                         <input type="submit" value="Submit" className="create-container__submit"/>
                     </div>
@@ -112,3 +217,4 @@ class Create extends Component {
 }
 
 export default Create;
+*/
