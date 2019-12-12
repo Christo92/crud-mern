@@ -7,12 +7,12 @@
         color: $white-color;
         font-size: 20px;
 
-            &:active,
-            &:visited,
-            &:focus {
-                @include decoration-none;
+        &:active,
+        &:visited,
+        &:focus {
+            @include decoration-none;
 
-            }
+        }
     }
 
     .header__menu {

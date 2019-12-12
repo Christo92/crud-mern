@@ -1,9 +1,9 @@
 import React from 'react';
 import { Switch, Route, Link, NavLink } from 'react-router-dom';
 // Components
-import Home from './Home';
-import Edit from './Edit';
-import PersonList from './PersonList';
+import Home from '../Home/Home';
+import Edit from '../Edit/Edit';
+import PersonList from '../PersonList/PersonList';
 
 function Navigation() {
     return (

@@ -1,68 +1,20 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React from 'react';
+// import axios from 'axios';
 import PropTypes from 'prop-types';
+
+import EditHandleSubmit from '../../HOC/EditHandleSubmit';
 
 function Edit(props) {
 
-    // Set hooks states
-    const [personName, setPersonName] = useState('');
-    const [personNickName, setPersonNickName] = useState('');
-    const [personDescription, setPersonDescription] = useState('');
-
-    // Http request to edit the person
-    useEffect(() => {
-        async function fetchData() {
-            try {
-                const editPerson = await axios.get(`/api/person/edit/${props.match.params.id}`);
-                let editPersonData = editPerson.data;
-
-                // Update the data with new input value
-                setPersonName(editPersonData.personName);
-                setPersonNickName(editPersonData.personNickName);
-                setPersonDescription(editPersonData.personDescription);
-
-            } catch (err) {
-                console.error(err.message)
-            }
-        }
-        fetchData()
-    }, [props])
-
-    // Get the person name
-    function handlePersonName(e) {
-        setPersonName(e.target.value)
-    }
-
-    // Get the person nickname
-    function handlePersonNickname(e) {
-        setPersonNickName(e.target.value)
-    }
-
-    // Get the person description
-    function handlePersonDescription(e) {
-        setPersonDescription(e.target.value)
-    }
-
-    async function handleSubmit(e) {
-        e.preventDefault();
-
-        // Let's store the inputs value
-        const obj = {
-            personName,
-            personNickName,
-            personDescription
-        };
-
-        // Http request post to update value
-        try {
-            await axios.post(`/api/person/update/${props.match.params.id}`, obj);
-        } catch (err) {
-            console.log(err.message)
-        }
-
-        // After update go back to the list
-        props.history.push('/create')
-    }
+    const {
+        handleSubmit,
+        personName,
+        handlePersonName,
+        personNickName,
+        handlePersonNickname,
+        personDescription,
+        handlePersonDescription
+    } = props;
 
     return (
         <div className="edit-container">
@@ -111,12 +63,14 @@ function Edit(props) {
 }
 
 Edit.propTypes = {
+    history: PropTypes.shape({
+        push: PropTypes.func.isRequired,
+    }),
     match: PropTypes.shape({
         params: PropTypes.shape({
-            id: PropTypes.string
+            id: PropTypes.string.isRequired
         })
-    }).isRequired,
-    history: PropTypes.object
+    }),
 }
 
-export default Edit;
+export default EditHandleSubmit(Edit);

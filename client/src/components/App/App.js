@@ -1,8 +1,8 @@
 import React from 'react';
 // Components
-import Navigation from './Navigation';
+import Navigation from '../Navigation/Navigation';
 // Styles
-import './styles/index.scss';
+import '../styles/index.scss';
 
 function App() {
     return (

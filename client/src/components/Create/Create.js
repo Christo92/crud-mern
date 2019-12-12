@@ -1,59 +1,26 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import React from 'react';
+
+import CreateHandleSubmit from '../../HOC/CreateHandleSubmit';
 
 /*
 Here is the create form :
 - name input
 - nickname input
 - description input
-- submit inpuy
+- submit input
 */
-function Create() {
 
-    const [personName, setPersonName] = useState('');
-    const [personNickName, setPersonNickName] = useState('');
-    const [personDescription, setPersonDescription] = useState('');
+function Create(props) {
 
-    // To get the name
-    function handlePersonName(e) {
-        setPersonName(e.target.value);
-    }
-
-    // To get the nickname
-    function handlePersonNickName(e) {
-        setPersonNickName(e.target.value)
-    };
-
-    // To get the description
-    function handlePersonDescription(e) {
-        setPersonDescription(e.target.value);
-    }
-
-    // Submit the person
-    async function handleSubmit(e) {
-        e.preventDefault();
-
-        const obj = {
-            personName,
-            personNickName,
-            personDescription
-        };
-
-        // Call add api
-        try {
-            await axios.post('/api/person/add', obj);
-        } catch (err) {
-            console.error(err.message);
-        }
-
-        // Empty back the fields
-        setPersonName('');
-        setPersonNickName('');
-        setPersonDescription('');
-
-         // Refresh the page
-         window.location.reload();
-    }
+    const {
+        handleSubmit,
+        personName,
+        handlePersonName,
+        personNickName,
+        handlePersonNickName,
+        personDescription,
+        handlePersonDescription
+    } = props;
 
     return (
         <div className="create-container">
@@ -99,4 +66,4 @@ function Create() {
     )
 }
 
-export default Create;
+export default CreateHandleSubmit(Create);
